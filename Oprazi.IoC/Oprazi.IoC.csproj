@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Oprazi.IoC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DependencyInjection.cs.zsif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Oprazi.Bll\Oprazi.Bll.csproj" />
+    <ProjectReference Include="..\Oprazi.Dal\Oprazi.Dal.csproj" />
+    <ProjectReference Include="..\Oprazi.Utility\Oprazi.Utility.csproj" />
+  </ItemGroup>
+
+</Project>

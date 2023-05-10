@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Oprazi.Dal</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.Development.json" />
+    <None Remove="appsettings.json" />
+    <None Remove="DataContext\AspNetCoreNTierDbContext.cs.zsif" />
+    <None Remove="Repositories\IRepositories\Izg-singularize(((zg-entity...zg-name)))Repository.cs.zref" />
+    <None Remove="Repositories\zg-singularize(((zg-entity...zg-name)))Repository.cs.zref" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Oprazi.Entity\Oprazi.Entity.csproj" />
+    <ProjectReference Include="..\Oprazi.Utility\Oprazi.Utility.csproj" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

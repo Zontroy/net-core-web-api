@@ -1,0 +1,36 @@
+using Oprazi.Entity.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System;
+using Microsoft.AspNetCore.Identity;
+
+namespace Oprazi.Dal.DataContext
+{
+    public class AspNetCoreNTierDbContext: IdentityDbContext<User, Role, int>
+    {
+        public AspNetCoreNTierDbContext(DbContextOptions<AspNetCoreNTierDbContext> options) : base(options) { }
+
+        public DbSet<EmailConfiguration> EmailConfiguration { get; set; }
+
+        zg-for(((zg-item:::[[[zg-entities]]]))){{{
+        public DbSet<zg-singularize(((zg-entity...zg-name)))> [[[zg-entity...zg-name]]] { get; set; }
+        }}}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+           //remove default plural suffix of identity table names
+            var entityTypes = modelBuilder.Model.GetEntityTypes();
+            foreach (var entityType in entityTypes)
+                modelBuilder.Entity(entityType.ClrType)
+                       .ToTable(entityType.GetTableName().StartsWith("AspNet") ? entityType.GetTableName().Substring(0, entityType.GetTableName().Length - 1) : entityType.GetTableName());
+
+            //remove default prefix of identity table names
+            entityTypes = modelBuilder.Model.GetEntityTypes();
+            foreach (var entityType in entityTypes)
+                modelBuilder.Entity(entityType.ClrType)
+                       .ToTable(entityType.GetTableName().Replace("AspNet", ""));
+        }
+    }
+}

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Oprazi.Bll</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Services\IServices\Izg-singularize(((zg-entity...zg-name)))Service.cs.zref" />
+    <None Remove="Services\zg-singularize%28%28%28zg-entity...zg-name%29%29%29Service.cs.zref" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CorePush" Version="4.1.0" />
+    <PackageReference Include="FirebaseAdmin" Version="2.3.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.28.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.28.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Oprazi.Dal\Oprazi.Dal.csproj" />
+    <ProjectReference Include="..\Oprazi.Dto\Oprazi.Dto.csproj" />
+    <ProjectReference Include="..\Oprazi.Entity\Oprazi.Entity.csproj" />
+    <ProjectReference Include="..\Oprazi.Utility\Oprazi.Utility.csproj" />
+  </ItemGroup>
+
+</Project>

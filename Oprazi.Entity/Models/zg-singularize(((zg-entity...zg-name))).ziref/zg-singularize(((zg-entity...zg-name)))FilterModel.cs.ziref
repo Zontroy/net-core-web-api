@@ -1,0 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Oprazi.Entity.Models
+{
+    public class zg-singularize(((zg-entity...zg-name)))FilterModel : BaseFilterModel
+    {
+        
+        zg-for(((zg-item:::[[[zg-entity...zg-nonPKFields]]]))){{{
+        public zg-if(((zg-item...zg-required=====zg-toStr(((True)))))){{{[[[zg-item...zg-targetType]]]}}}zg-if(((zg-item...zg-required=====zg-toStr(((False)))))){{{[[[zg-item...zg-nullTargetType]]]}}} [[[zg-item...zg-name]]] { get; set; }
+        }}}
+        
+    
+        
+
+    }
+}

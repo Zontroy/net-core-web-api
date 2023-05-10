@@ -1,0 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Oprazi.Entity.Models
+{
+    public class zg-singularize(((zg-entity...zg-name)))ResponseModel : ResponseModel
+    {
+        public List<zg-singularize(((zg-entity...zg-name)))ListModel> Data { get; set; } 
+
+    }
+}

@@ -1,0 +1,20 @@
+﻿using FluentValidation;
+using Oprazi.Dto.DTOs;
+using System;
+using System.Linq;
+
+namespace Oprazi.Api.Validatiors
+{
+    public class zg-singularize(((zg-entity...zg-name)))Validator : AbstractValidator<zg-singularize(((zg-entity...zg-name)))ToAddDTO>
+    {
+        public zg-singularize(((zg-entity...zg-name)))Validator()
+        {
+            // TODO: implement validator in zontroy and regenerate
+        }
+
+        private bool IsValidName(string name)
+        {
+            return name.All(Char.IsLetter);
+        }
+    }
+}

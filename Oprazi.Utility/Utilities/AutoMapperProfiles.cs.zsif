@@ -1,0 +1,94 @@
+using Oprazi.Dto.DTOs;
+using Oprazi.Entity.Entities;
+using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Oprazi.Entity.Models;
+using System.Globalization;
+
+namespace Oprazi.Utility.Utilities
+{
+    public static class AutoMapperProfiles
+    {
+        public class AutoMapperProfile : Profile
+        {
+            public AutoMapperProfile()
+            {
+                CreateMap<Link, LinkDTO>().ReverseMap();
+                CreateMap<Pagination, PaginationDTO>().ReverseMap();
+                CreateMap<Payload, PayloadDTO>().ReverseMap();
+                CreateMap<ResponseModel, ResponseModelDTO>().ReverseMap();
+                CreateMap<ChartModel, ChartDTO>().ReverseMap();
+                CreateMap<ChartDecimalModel, ChartDecimalDTO>().ReverseMap();
+
+                CreateMap<User, UserToListDTO>().ReverseMap();
+                CreateMap<User, UserToAddDTO>().ReverseMap();
+                CreateMap<User, UserToRegisterDTO>().ReverseMap();
+                CreateMap<User, UserDTO>().ReverseMap();
+                CreateMap<UserListModel, UserToListDTO>().ReverseMap();
+                CreateMap<UserFilterModel, UserToFilterDTO>().ReverseMap();
+                CreateMap<UserResponseModel, UserToResponseDTO>().ReverseMap();
+                CreateMap<UserProfileModel, UserProfileToListDTO>().ReverseMap();
+
+                CreateMap<Role, RoleDTO>().ReverseMap();
+                CreateMap<Role, RoleToListDTO>().ReverseMap();
+                CreateMap<Role, RoleToAddDTO>().ReverseMap();
+                CreateMap<RoleListModel, RoleToListDTO>().ReverseMap();
+                CreateMap<RoleFilterModel, RoleToFilterDTO>().ReverseMap();
+                CreateMap<RoleResponseModel, RoleToResponseDTO>().ReverseMap();
+
+                CreateMap<RoleClaim, RoleClaimDTO>().ReverseMap();
+                CreateMap<RoleClaim, RoleClaimToListDTO>().ReverseMap();
+                CreateMap<RoleClaim, RoleClaimToAddDTO>().ReverseMap();
+                CreateMap<RoleClaimListModel, RoleClaimToListDTO>().ReverseMap();
+                CreateMap<RoleClaimFilterModel, RoleClaimToFilterDTO>().ReverseMap();
+                CreateMap<RoleClaimResponseModel, RoleClaimToResponseDTO>().ReverseMap();
+                
+                CreateMap<UserClaim, UserClaimDTO>().ReverseMap();
+                CreateMap<UserClaim, UserClaimToListDTO>().ReverseMap();
+                CreateMap<UserClaim, UserClaimToAddDTO>().ReverseMap();
+                CreateMap<UserClaimListModel, UserClaimToListDTO>().ReverseMap();
+                CreateMap<UserClaimFilterModel, UserClaimToFilterDTO>().ReverseMap();
+                CreateMap<UserClaimResponseModel, UserClaimToResponseDTO>().ReverseMap();
+                
+                CreateMap<UserLogin, UserLoginDTO>().ReverseMap();
+                CreateMap<UserLogin, UserLoginToListDTO>().ReverseMap();
+                CreateMap<UserLogin, UserLoginToAddDTO>().ReverseMap();
+                CreateMap<UserLoginListModel, UserLoginToListDTO>().ReverseMap();
+                CreateMap<UserLoginFilterModel, UserLoginToFilterDTO>().ReverseMap();
+                CreateMap<UserLoginResponseModel, UserLoginToResponseDTO>().ReverseMap();
+                
+                CreateMap<UserRole, UserRoleDTO>().ReverseMap();
+                CreateMap<UserRole, UserRoleToListDTO>().ReverseMap();
+                CreateMap<UserRole, UserRoleToAddDTO>().ReverseMap();
+                CreateMap<UserRoleListModel, UserRoleToListDTO>().ReverseMap();
+                CreateMap<UserRoleFilterModel, UserRoleToFilterDTO>().ReverseMap();
+                CreateMap<UserRoleResponseModel, UserRoleToResponseDTO>().ReverseMap();
+
+                CreateMap<UserToken, UserTokenDTO>().ReverseMap();
+                CreateMap<UserToken, UserTokenToListDTO>().ReverseMap();
+                CreateMap<UserToken, UserTokenToAddDTO>().ReverseMap();
+                CreateMap<UserTokenListModel, UserTokenToListDTO>().ReverseMap();
+                CreateMap<UserTokenFilterModel, UserTokenToFilterDTO>().ReverseMap();
+                CreateMap<UserTokenResponseModel, UserTokenToResponseDTO>().ReverseMap();
+
+                CreateMap<EmailConfiguration, EmailConfigurationDTO>().ReverseMap();
+                CreateMap<EmailConfiguration, EmailConfigurationToListDTO>().ReverseMap();
+                CreateMap<EmailConfiguration, EmailConfigurationToAddDTO>().ReverseMap();
+                CreateMap<EmailConfigurationListModel, EmailConfigurationToListDTO>().ReverseMap();
+                CreateMap<EmailConfigurationFilterModel, EmailConfigurationToFilterDTO>().ReverseMap();
+                CreateMap<EmailConfigurationResponseModel, EmailConfigurationToResponseDTO>().ReverseMap();
+
+                zg-for(((zg-item:::[[[zg-entities]]]))){{{
+                CreateMap<zg-singularize(((zg-entity...zg-name))), zg-singularize(((zg-entity...zg-name)))DTO>().ReverseMap();
+                CreateMap<zg-singularize(((zg-entity...zg-name))), zg-singularize(((zg-entity...zg-name)))ToListDTO>().ReverseMap();
+                CreateMap<zg-singularize(((zg-entity...zg-name))), zg-singularize(((zg-entity...zg-name)))ToAddDTO>().ReverseMap();
+                CreateMap<zg-singularize(((zg-entity...zg-name)))ListModel, zg-singularize(((zg-entity...zg-name)))ToListDTO>().ReverseMap();
+                CreateMap<zg-singularize(((zg-entity...zg-name)))FilterModel, zg-singularize(((zg-entity...zg-name)))ToFilterDTO>().ReverseMap();
+                CreateMap<zg-singularize(((zg-entity...zg-name)))ResponseModel, zg-singularize(((zg-entity...zg-name)))ToResponseDTO>().ReverseMap();
+                }}}
+            }
+        }
+    }
+}

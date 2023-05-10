@@ -1,0 +1,17 @@
+using Oprazi.Dto.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Oprazi.Bll.Services.IServices
+{
+    public interface Izg-singularize(((zg-entity...zg-name)))Service
+    {
+        Task<zg-singularize(((zg-entity...zg-name)))ToResponseDTO> Getzg-pluralize(((zg-entity...zg-name)))(zg-singularize(((zg-entity...zg-name)))ToFilterDTO filter);
+        Task<zg-singularize(((zg-entity...zg-name)))DTO> Getzg-singularize(((zg-entity...zg-name)))ById(int Id);
+        Task<zg-singularize(((zg-entity...zg-name)))DTO> Addzg-singularize(((zg-entity...zg-name)))(zg-singularize(((zg-entity...zg-name)))ToAddDTO zg-lower(((zg-singularize(((zg-entity...zg-name))))))ToAddDTO);
+        Task Updatezg-singularize(((zg-entity...zg-name)))(zg-singularize(((zg-entity...zg-name)))DTO zg-lower(((zg-singularize(((zg-entity...zg-name))))))DTO);
+        Task Deletezg-singularize(((zg-entity...zg-name)))(int Id);
+    }
+}

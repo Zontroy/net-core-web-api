@@ -1,0 +1,106 @@
+using Microsoft.AspNetCore.Mvc;
+using Oprazi.Bll.Services.IServices;
+using Oprazi.Dto.DTOs;
+using System;
+using System.Threading.Tasks;
+
+namespace Oprazi.Api.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class zg-singularize(((zg-entity...zg-name)))Controller : ControllerBase
+    {
+        private readonly Izg-singularize(((zg-entity...zg-name)))Service _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Service;
+
+        public zg-singularize(((zg-entity...zg-name)))Controller(Izg-singularize(((zg-entity...zg-name)))Service zg-lower(((zg-singularize(((zg-entity...zg-name))))))Service)
+        {
+            _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Service = zg-lower(((zg-singularize(((zg-entity...zg-name))))))Service;
+        }
+
+        //[BasicAuthorization]
+        [HttpGet("getzg-lower(((zg-pluralize(((zg-entity...zg-name))))))")]
+        public async Task<IActionResult> Getzg-pluralize(((zg-entity...zg-name)))([FromQuery] zg-singularize(((zg-entity...zg-name)))ToFilterDTO filter)
+        {
+            try
+            {
+                var zg-lower(((zg-entity...zg-name))) = await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Service.Getzg-pluralize(((zg-entity...zg-name)))(filter);
+                if (zg-lower(((zg-entity...zg-name))) == null) 
+                    return NotFound();
+                else
+                    return Ok(zg-lower(((zg-entity...zg-name))));
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+        
+        [HttpGet("getzg-lower(((zg-singularize(((zg-entity...zg-name))))))/{id}")]
+        public async Task<IActionResult> Getzg-singularize(((zg-entity...zg-name)))(int Id)
+        {
+            try
+            {
+                var zg-lower(((zg-singularize(((zg-entity...zg-name)))))) = await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Service.Getzg-singularize(((zg-entity...zg-name)))ById(Id);
+                if (zg-lower(((zg-singularize(((zg-entity...zg-name)))))) == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(new { data = zg-lower(((zg-singularize(((zg-entity...zg-name))))))});
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpPost("addzg-lower(((zg-singularize(((zg-entity...zg-name))))))")]
+        public async Task<IActionResult> Addzg-singularize(((zg-entity...zg-name)))(zg-singularize(((zg-entity...zg-name)))ToAddDTO model)
+        {
+            try
+            {
+                await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Service.Addzg-singularize(((zg-entity...zg-name)))(model);
+                
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("updatezg-lower(((zg-singularize(((zg-entity...zg-name))))))/{id}")]
+        public async Task<IActionResult> Updatezg-singularize(((zg-entity...zg-name)))([FromBody] zg-singularize(((zg-entity...zg-name)))DTO model)
+        {
+            try
+            {
+                await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Service.Updatezg-singularize(((zg-entity...zg-name)))(model);
+
+                return Ok();
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+
+        [HttpDelete("deletezg-lower(((zg-singularize(((zg-entity...zg-name))))))/{id}")]
+        public async Task<IActionResult> Deletezg-singularize(((zg-entity...zg-name)))(int Id)
+        {
+            try
+            {
+                await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Service.Deletezg-singularize(((zg-entity...zg-name)))(Id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Oprazi.Dto.DTOs
+{
+    public class zg-singularize(((zg-entity...zg-name)))ToAddDTO
+    {
+        zg-for(((zg-item:::[[[zg-entity...zg-nonPKFields]]]))){{{
+        public zg-if(((zg-item...zg-required=====zg-toStr(((True)))))){{{[[[zg-item...zg-targetType]]]}}}zg-if(((zg-item...zg-required=====zg-toStr(((False)))))){{{[[[zg-item...zg-nullTargetType]]]}}} [[[zg-item...zg-name]]] { get; set; }
+        }}}
+    }
+}

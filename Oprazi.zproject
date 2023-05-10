@@ -1,0 +1,13 @@
+{
+  "Name": "Oprazi",
+  "DatabaseType": "MSSQL",
+  "Server": ".\\SQLEXPRESS",
+  "DatabaseName": "NetCoreWebApi",
+  "ConnectionString": "data source=.\\SQLEXPRESS;initial catalog=NetCoreWebApi;user id=sa;password=12345",
+  "Username": "sa",
+  "Password": "12345",
+  "Language": "CSharp",
+  "Port": "",
+  "IsIntegratedSecurity": false,
+  "Entities": []
+}

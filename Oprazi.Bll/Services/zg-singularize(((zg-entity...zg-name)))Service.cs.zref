@@ -1,0 +1,54 @@
+using Oprazi.Bll.Services.IServices;
+using Oprazi.Dal.Repositories.IRepositories;
+using Oprazi.Dto.DTOs;
+using Oprazi.Entity.Entities;
+using Oprazi.Entity.Models;
+using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Linq.Expressions;
+
+namespace Oprazi.Bll.Services
+{
+    public class zg-singularize(((zg-entity...zg-name)))Service : Izg-singularize(((zg-entity...zg-name)))Service
+    {
+        private readonly Izg-singularize(((zg-entity...zg-name)))Repository _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Repository;
+        private readonly IMapper _mapper;
+        public zg-singularize(((zg-entity...zg-name)))Service(Izg-singularize(((zg-entity...zg-name)))Repository zg-lower(((zg-singularize(((zg-entity...zg-name))))))Repository, IMapper mapper)
+        {
+            _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Repository = zg-lower(((zg-singularize(((zg-entity...zg-name))))))Repository;
+            _mapper = mapper;
+        }
+
+        public async Task<zg-singularize(((zg-entity...zg-name)))ToResponseDTO> Getzg-pluralize(((zg-entity...zg-name)))(zg-singularize(((zg-entity...zg-name)))ToFilterDTO filter)
+        {
+            return _mapper.Map<zg-singularize(((zg-entity...zg-name)))ToResponseDTO>(await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Repository.Getzg-singularize(((zg-entity...zg-name)))List(_mapper.Map<zg-singularize(((zg-entity...zg-name)))FilterModel>(filter)) );
+        }
+       
+        public async Task<zg-singularize(((zg-entity...zg-name)))DTO> Getzg-singularize(((zg-entity...zg-name)))ById(int Id)
+        {
+            return _mapper.Map<zg-singularize(((zg-entity...zg-name)))DTO>(await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Repository.GetByIdAsync(Id));
+        }
+
+        public async Task<zg-singularize(((zg-entity...zg-name)))DTO> Addzg-singularize(((zg-entity...zg-name)))(zg-singularize(((zg-entity...zg-name)))ToAddDTO zg-lower(((zg-singularize(((zg-entity...zg-name))))))ToAddDTO)
+        {
+            return _mapper.Map<zg-singularize(((zg-entity...zg-name)))DTO>(await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Repository.Add(_mapper.Map<zg-singularize(((zg-entity...zg-name)))>(zg-lower(((zg-singularize(((zg-entity...zg-name))))))ToAddDTO ) ) );
+        }
+
+        public async Task Updatezg-singularize(((zg-entity...zg-name)))(zg-singularize(((zg-entity...zg-name)))DTO zg-lower(((zg-singularize(((zg-entity...zg-name))))))DTO)
+        {
+            await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Repository.Update(_mapper.Map<zg-singularize(((zg-entity...zg-name)))>(zg-lower(((zg-singularize(((zg-entity...zg-name))))))DTO ) );
+        }
+
+        public async Task Deletezg-singularize(((zg-entity...zg-name)))(int Id)
+        {
+            await _zg-lower(((zg-singularize(((zg-entity...zg-name))))))Repository.Delete(Id);
+        }
+
+      
+     
+    }
+}

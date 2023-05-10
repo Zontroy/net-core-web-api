@@ -1,0 +1,195 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Oprazi.Bll.Services;
+using Oprazi.Bll.Services.IServices;
+using Oprazi.Dal.DataContext;
+using Oprazi.Dal.Repositories;
+using Oprazi.Dal.Repositories.IRepositories;
+using Oprazi.Utility.Utilities;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Oprazi.Entity.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+
+namespace Oprazi.IoC
+{
+    public class DependencyInjection
+    {
+        private readonly IConfiguration Configuration;
+        public DependencyInjection(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public void InjectDependencies(IServiceCollection services)
+        {
+             string secretStr = Configuration["Application:Secret"];
+            byte[] secret = Encoding.UTF8.GetBytes(secretStr);
+
+            services.AddDbContext<AspNetCoreNTierDbContext>(options =>
+            {
+                //options.UseNpgsql(Configuration.GetConnectionString("netcorewebapintiertemplatedb"));
+                options.UseSqlServer(Configuration.GetConnectionString("netcorewebapintiertemplatedb"));
+            });
+
+            services.AddIdentity<User, Role>()
+                    .AddRoleManager<RoleManager<Role>>()
+                    .AddEntityFrameworkStores<AspNetCoreNTierDbContext>()
+                    .AddDefaultTokenProviders();
+            ;
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Audience = Configuration["Application:Audience"];
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(secret),
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
+            #region Authorization
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(ClaimUtility.roleclaim,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.roleclaim));
+                options.AddPolicy(ClaimUtility.roleclaim_view,
+                 policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.roleclaim_view));
+                options.AddPolicy(ClaimUtility.roleclaim_create,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.roleclaim_create));
+                options.AddPolicy(ClaimUtility.roleclaim_update,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.roleclaim_update));
+                options.AddPolicy(ClaimUtility.roleclaim_delete,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.roleclaim_delete));
+
+                options.AddPolicy(ClaimUtility.role,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.role));
+                options.AddPolicy(ClaimUtility.role_view,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.role_view));
+                options.AddPolicy(ClaimUtility.role_create,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.role_create));
+                options.AddPolicy(ClaimUtility.role_update,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.role_update));
+                options.AddPolicy(ClaimUtility.role_delete,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.role_delete));
+
+
+                options.AddPolicy(ClaimUtility.userclaim,
+               policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userclaim));
+                options.AddPolicy(ClaimUtility.userclaim_view,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userclaim_view));
+                options.AddPolicy(ClaimUtility.userclaim_create,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userclaim_create));
+                options.AddPolicy(ClaimUtility.userclaim_update,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userclaim_update));
+                options.AddPolicy(ClaimUtility.userclaim_delete,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userclaim_delete));
+
+
+                options.AddPolicy(ClaimUtility.user,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.user));
+                options.AddPolicy(ClaimUtility.user_view,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.user_view));
+                options.AddPolicy(ClaimUtility.user_create,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.user_create));
+                options.AddPolicy(ClaimUtility.user_update,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.user_update));
+                options.AddPolicy(ClaimUtility.user_delete,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.user_delete));
+
+             
+
+                options.AddPolicy(ClaimUtility.userlogin,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userlogin));
+                options.AddPolicy(ClaimUtility.userlogin_view,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userlogin_view));
+                options.AddPolicy(ClaimUtility.userlogin_create,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userlogin_create));
+                options.AddPolicy(ClaimUtility.userlogin_update,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userlogin_update));
+                options.AddPolicy(ClaimUtility.userlogin_delete,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userlogin_delete));
+
+                options.AddPolicy(ClaimUtility.userrole,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userrole));
+                options.AddPolicy(ClaimUtility.userrole_view,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userrole_view));
+                options.AddPolicy(ClaimUtility.userrole_create,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userrole_create));
+                options.AddPolicy(ClaimUtility.userrole_update,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userrole_update));
+                options.AddPolicy(ClaimUtility.userrole_delete,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.userrole_delete));
+
+
+                zg-for(((zg-item:::[[[zg-entities]]]))){{{
+                options.AddPolicy(ClaimUtility.zg-lower(((zg-entity...zg-name))),
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.zg-lower(((zg-entity...zg-name)))));
+                options.AddPolicy(ClaimUtility.zg-lower(((zg-entity...zg-name)))_view,
+                  policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.zg-lower(((zg-entity...zg-name)))_view));
+                options.AddPolicy(ClaimUtility.zg-lower(((zg-entity...zg-name)))_create,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.zg-lower(((zg-entity...zg-name)))_create));
+                options.AddPolicy(ClaimUtility.zg-lower(((zg-entity...zg-name)))_update,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.zg-lower(((zg-entity...zg-name)))_update));
+                options.AddPolicy(ClaimUtility.zg-lower(((zg-entity...zg-name)))_delete,
+                    policy => policy.RequireClaim(ClaimTypeUtility.role, ClaimUtility.zg-lower(((zg-entity...zg-name)))_delete));
+                }}}
+
+
+            });
+
+
+
+            #endregion
+
+            services.AddAutoMapper(typeof(AutoMapperProfiles));
+
+            
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleService, RoleService>();
+
+            services.AddScoped<IRoleClaimRepository, RoleClaimRepository>();
+            services.AddScoped<IRoleClaimService, RoleClaimService>();
+
+            services.AddScoped<IUserClaimRepository, UserClaimRepository>();
+            services.AddScoped<IUserClaimService, UserClaimService>();
+
+            services.AddScoped<IUserLoginRepository, UserLoginRepository>();
+            services.AddScoped<IUserLoginService, UserLoginService>();
+
+            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+            services.AddScoped<IUserRoleService, UserRoleService>();
+
+            services.AddScoped<IUserTokenRepository, UserTokenRepository>();
+            services.AddScoped<IUserTokenService, UserTokenService>();
+
+            services.AddScoped<IEmailConfigurationRepository, EmailConfigurationRepository>();
+            services.AddScoped<IEmailConfigurationService, EmailConfigurationService>();
+			
+            zg-for(((zg-item:::[[[zg-entities]]]))){{{
+            services.AddScoped<Izg-singularize(((zg-entity...zg-name)))Repository, zg-singularize(((zg-entity...zg-name)))Repository>();
+            services.AddScoped<Izg-singularize(((zg-entity...zg-name)))Service, zg-singularize(((zg-entity...zg-name)))Service>();
+            }}}
+        }
+    }
+}
