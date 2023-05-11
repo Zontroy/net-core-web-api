@@ -11,7 +11,7 @@ namespace Oprazi.Dto.DTOs
         }}}
     
         zg-for(((zg-item:::[[[zg-entity...zg-fkFields]]]))){{{
-        public string [[[zg-item...zg-referencedEntity...zg-name]]]Name { get; set; }
+        public string [[[zg-item...zg-referencedEntity...zg-name]]][[[zg-item...zg-name]]] { get; set; }
         }}}
     }
 }

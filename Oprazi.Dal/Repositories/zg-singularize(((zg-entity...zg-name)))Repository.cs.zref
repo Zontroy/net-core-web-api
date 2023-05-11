@@ -23,7 +23,7 @@ namespace Oprazi.Dal.Repositories
         {
             var zg-pluralize(((zg-entity...zg-name))) = (from zg-lower(((zg-entity...zg-name))) in _aspNetCoreNTierDbContext.Set<zg-singularize(((zg-entity...zg-name)))>()
                     zg-for(((zg-item:::[[[zg-entity...zg-fkFields]]]))){{{
-                    join zg-lower(((zg-item...zg-referencedEntity...zg-name))) in _aspNetCoreNTierDbContext.Set<zg-singularize(((zg-item...zg-referencedEntity...zg-name)))>() on zg-lower(((zg-entity...zg-name))).[[[zg-item...zg-name]]] equals zg-lower(((zg-item...zg-referencedEntity...zg-name))).Id
+                    join zg-lower(((zg-item...zg-referencedEntity...zg-name)))[[[zg-item...zg-name]]] in _aspNetCoreNTierDbContext.Set<zg-singularize(((zg-item...zg-referencedEntity...zg-name)))>() on zg-lower(((zg-entity...zg-name))).[[[zg-item...zg-name]]] equals zg-lower(((zg-item...zg-referencedEntity...zg-name)))[[[zg-item...zg-name]]].[[[zg-item...zg-referencedEntity...zg-pkField...zg-name]]]
                     }}}
                     where zg-lower(((zg-entity...zg-name))).Status == 1
                     zg-if(((zg-entity...zg-nonKeyFields...zg-count!====zg-toStr(((0)))))){{{
@@ -38,7 +38,7 @@ namespace Oprazi.Dal.Repositories
                     {   zg-for(((zg-item:::[[[zg-entity...zg-fields]]]))){{{
                         [[[zg-item...zg-name]]] = zg-lower(((zg-entity...zg-name))).[[[zg-item...zg-name]]],
                         }}}zg-for(((zg-item:::[[[zg-entity...zg-fkFields]]]))){{{
-                        [[[zg-item...zg-referencedEntity...zg-name]]]Name = zg-lower(((zg-item...zg-referencedEntity...zg-name))).Name,
+                        [[[zg-item...zg-referencedEntity...zg-name]]][[[zg-item...zg-name]]] = zg-lower(((zg-item...zg-referencedEntity...zg-name)))[[[zg-item...zg-name]]].[[[zg-item...zg-referencedEntity...zg-pkField...zg-name]]].ToString(),
                         }}}
                     });
                 
